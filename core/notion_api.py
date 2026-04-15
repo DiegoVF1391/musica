@@ -48,8 +48,9 @@ def get_notion_data():
                     "Rating_Raw": props["Rating"]["select"]["name"] if props["Rating"]["select"] else "None",
                     "Status": props["Status"]["status"]["name"] if "Status" in props and props["Status"]["status"] else "Sin Estado",
                     "Genero": props["Género"]["select"]["name"] if props["Género"]["select"] else "None",
+                    "Album": [a["name"] for a in props["Album"]["multi_select"]] if props.get("Album") and props["Album"]["multi_select"] else [],
                     "Path": props["Dirección"]["rich_text"][0]["plain_text"] if props["Dirección"]["rich_text"] else "",
-                    "ProjectName": props["Nombre del proyecto"]["rich_text"][0]["plain_text"] if props["Nombre del proyecto"]["rich_text"] else ""
+                    "ProjectName": props["Nombre del proyecto"]["rich_text"][0]["plain_text"] if props["Nombre del proyecto"]["rich_text"] else "",
                 }
                 rows.append(row)
             except Exception as e:
